@@ -3,7 +3,7 @@
 {
   imports = [
     # Arquivo gerado por `nixos-generate-config` para discos e filesystems.
-    # Copie-o para a raiz e descomente esta linha antes da primeira instalação.
+    # Copie-o para a raiz antes da primeira instalação.
     ./hardware-configuration.nix
 
     ./modules/boot.nix
