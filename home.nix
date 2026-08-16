@@ -57,9 +57,31 @@ in {
 
   ];
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  # Remova apenas os backups legados criados durante a migração da configuração
+  # GTK; não afete arquivos .backup de outros aplicativos.
+  home.activation.removeLegacyGtkBackups = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+    rm -f \
+      "$HOME/.gtkrc-2.0.backup" \
+      "$HOME/.config/gtk-3.0/settings.ini.backup" \
+      "$HOME/.config/gtk-4.0/settings.ini.backup"
+  '';
+
   # Os dotfiles são aplicados somente depois que `./config` existir.
   # Isso permite avaliar a configuração mesmo antes de adicioná-los ao repositório.
-  xdg.configFile = lib.optionalAttrs (builtins.pathExists ./config) {
+  xdg.configFile = {
+    # GTK4/libadwaita (used by Nautilus) loads this stylesheet before looking
+    # up the named GTK theme. The upstream Flat Remix installer does the same.
+    "gtk-4.0/gtk.css".source =
+      "${flatRemixGtk}/share/themes/Flat-Remix-GTK-Blue-Darkest-Solid/gtk-4.0/gtk.css";
+    "gtk-4.0/assets".source =
+      "${flatRemixGtk}/share/themes/Flat-Remix-GTK-Blue-Darkest-Solid/gtk-4.0/assets";
+  } // lib.optionalAttrs (builtins.pathExists ./config) {
     "hypr".source = ./config/hypr;
     "kitty".source = ./config/kitty;
     "fish".source = ./config/fish;
