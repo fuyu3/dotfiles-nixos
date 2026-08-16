@@ -39,7 +39,6 @@
     unzip
     virt-manager
     wallust
-    xwaylandvideobridge
     
     git
     wget
