@@ -17,7 +17,7 @@
     # Driver NVIDIA ativo neste perfil. Comente esta linha em máquinas sem NVIDIA.
     ./modules/nvidia.nix
 
-    # Perfil oficial do ThinkPad T495; descomente ao usar esse notebook.
+    # Perfil oficial do ThinkPad T495.
     # nixos-hardware.nixosModules.lenovo-thinkpad-t495
   ];
 
