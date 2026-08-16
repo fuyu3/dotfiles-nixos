@@ -19,7 +19,6 @@
     gnome-system-monitor
     gnome-text-editor
     goverlay
-    gufw
     hypridle
     hyprpicker
     hyprpolkitagent
