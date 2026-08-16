@@ -5,7 +5,7 @@
     packages = with pkgs; [
       twemoji-color-font
       noto-fonts-cjk-sans
-      noto-fonts-extra
+      noto-fonts
       nerd-fonts.jetbrains-mono
       nerd-fonts.ubuntu-mono
     ];
