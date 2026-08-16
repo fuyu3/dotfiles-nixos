@@ -6,6 +6,7 @@
   environment.systemPackages = with pkgs; [
 
     awww
+    bibata-cursors
     btop
     btrfs-progs
     cava
@@ -16,6 +17,7 @@
     gnome-calculator
     gnome-characters
     gnome-disk-utility
+    gnome-keyring
     gnome-system-monitor
     gnome-text-editor
     goverlay
@@ -28,16 +30,20 @@
     krita
     less
     nautilus
+    nwg-look
     obs-studio
     papers
+    papirus-icon-theme
     pavucontrol
     peaclock
     prismlauncher
     qbittorrent
     quickshell
+    qt6.qt5compat
     smartmontools
     unzip
     virt-manager
+    vscode
     wallust
     
     git
@@ -45,6 +51,14 @@
     curl
 
   ];
+
+  environment.variables = {
+    QML_IMPORT_PATH = 
+      "${pkgs.qt6.qt5compat}/lib/qt-6/qml";
+
+    QML2_IMPORT_PATH =  
+      "${pkgs.qt6.qt5compat}/lib/qt-6/qml";
+  };
 
   services.clamav.daemon.enable = true;
   services.clamav.updater.enable = true;
