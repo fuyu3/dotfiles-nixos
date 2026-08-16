@@ -22,6 +22,8 @@
     # nixos-hardware.nixosModules.lenovo-thinkpad-t495
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   time.timeZone = "America/Sao_Paulo";
