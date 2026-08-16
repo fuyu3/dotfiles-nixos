@@ -16,21 +16,9 @@
       url = "github:NixOS/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Dotfiles pessoais moram fora de /etc/nixos (/home/fuyu/dotfiles).
-    # Precisam ser registrados como input de flake -- e não importados por
-    # caminho absoluto solto no código -- porque flakes avaliam em "modo
-    # puro" por padrão, e um `import /home/fuyu/...` direto é bloqueado
-    # nesse modo ("access to absolute path is forbidden in pure evaluation
-    # mode"). Como flake input, o Nix busca o diretório e o registra no
-    # flake.lock, e a avaliação continua pura.
-    dotfiles = {
-      url = "path:/home/fuyu/dotfiles";
-      flake = false;
-    };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, dotfiles, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, ... }:
   let
     system = "x86_64-linux";
   in {
@@ -53,10 +41,11 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            # Config pessoal do usuário mora fora de /etc/nixos, em
-            # /home/fuyu/dotfiles, separada da config do sistema.
-            home-manager.users.fuyu =
-              import (dotfiles + "/home.nix");
+            # home.nix mora na mesma árvore do flake agora (raiz do repo),
+            # então importa por caminho relativo -- sem input de flake
+            # separado, sem git+file://, sem os problemas de path: que a
+            # gente teve enquanto isso vivia fora de /etc/nixos.
+            home-manager.users.fuyu = import ./home.nix;
           }
 
         ];
