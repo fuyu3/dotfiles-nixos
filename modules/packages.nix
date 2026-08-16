@@ -1,11 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, spicetify-nix, ... }:
 
-{
+let
+  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in {
 
   # Ferramentas disponíveis globalmente para todos os usuários do sistema.
   environment.systemPackages = with pkgs; [
 
     awww
+    bc
     bibata-cursors
     btop
     btrfs-progs
@@ -52,6 +55,19 @@
     curl
 
   ];
+
+  # O módulo instala o Spotify já modificado; não adicione pkgs.spotify acima.
+  programs.spicetify = {
+    enable = true;
+    wayland = true;
+
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+    ];
+
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
+  };
 
   environment.variables = {
     QML_IMPORT_PATH = 

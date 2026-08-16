@@ -7,5 +7,3 @@ pkill -x pypr
 sleep 0.5
  
 quickshell &
-
-pypr &

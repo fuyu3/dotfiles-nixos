@@ -1,9 +1,9 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# This is for changing kb_layouts. Set kb_layouts in $settings_file
+# Cycle through the layouts configured in Hyprland's Lua input configuration.
 
 layout_file="$HOME/.cache/kb_layout"
-settings_file="$HOME/.config/hypr/hyprland.conf"
+settings_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/conf.d/input.lua"
 
 # Refined ignore list with patterns or specific device names
 ignore_patterns=(
@@ -12,33 +12,40 @@ ignore_patterns=(
   "Other Device 
   Name"
   )
-# Create layout file with default layout if it does not exist
-if [ ! -f "$layout_file" ]; then
-  echo "Creating layout file..."
-  default_layout=$(grep 'kb_layout = ' "$settings_file" | cut -d '=' -f 2 | tr -d '[:space:]' | cut -d ',' -f 1 2>/dev/null)
-  default_layout=${default_layout:-"us"} # Default to 'us' layout
-  echo "$default_layout" > "$layout_file"
-  echo "Default layout set to $default_layout"
-fi
-
-current_layout=$(cat "$layout_file")
-echo "Current layout: $current_layout"
-
-# Read available layouts from settings file
-if [ -f "$settings_file" ]; then
-  kb_layout_line=$(grep 'kb_layout = ' "$settings_file" | cut -d '=' -f 2)
-  # Remove leading and trailing spaces around each layout
-  kb_layout_line=$(echo "$kb_layout_line" | tr -d '[:space:]')
-  IFS=',' read -r -a layout_mapping <<< "$kb_layout_line"
-else
-  echo "Settings file not found!"
+# Read the Lua string: kb_layout = "us,br",.
+if [[ ! -f "$settings_file" ]]; then
+  echo "Hyprland Lua configuration not found: $settings_file" >&2
   exit 1
 fi
 
+kb_layout_line=$(sed -nE 's/^[[:space:]]*kb_layout[[:space:]]*=[[:space:]]*"([^"]*)".*/\1/p' "$settings_file" | head -n1)
+if [[ -z "$kb_layout_line" ]]; then
+  echo "Could not read kb_layout from: $settings_file" >&2
+  exit 1
+fi
+
+IFS=',' read -r -a layout_mapping <<< "$kb_layout_line"
 layout_count=${#layout_mapping[@]}
+if (( layout_count == 0 )); then
+  echo "No keyboard layouts configured in: $settings_file" >&2
+  exit 1
+fi
+
+# Create the state file from the first Lua-configured layout on first use.
+if [[ ! -f "$layout_file" ]]; then
+  current_layout="${layout_mapping[0]}"
+  mkdir -p "$(dirname "$layout_file")"
+  printf '%s\n' "$current_layout" > "$layout_file"
+else
+  current_layout=$(<"$layout_file")
+fi
+
+echo "Current layout: $current_layout"
+
 echo "Number of layouts: $layout_count"
 
 # Find current layout index and calculate next layout
+current_index=0
 for ((i = 0; i < layout_count; i++)); do
   if [ "$current_layout" == "${layout_mapping[i]}" ]; then
     current_index=$i

@@ -151,9 +151,6 @@ hl.window_rule({
   opacity = "0.0",
 })
 
-lr("wofi", { blur = true })
-lr("wofi", { ignore_alpha = 0 })
-lr("wofi", { animation = "popin 90%" })
 lr("swaync-control-center", { blur = true })
 lr("swaync-control-center", { ignore_alpha = 0 })
 lr("swaync-control-center", { animation = "slidevert top 50%" })

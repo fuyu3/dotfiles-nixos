@@ -16,9 +16,14 @@
       url = "github:NixOS/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, spicetify-nix, ... }:
   let
     system = "x86_64-linux";
   in {
@@ -27,7 +32,7 @@
       nixpkgs.lib.nixosSystem {
 
         inherit system;
-        specialArgs = { inherit nixos-hardware; };
+        specialArgs = { inherit nixos-hardware spicetify-nix; };
 
         modules = [
 
@@ -36,6 +41,9 @@
 
           # Integra o Home Manager ao mesmo rebuild do NixOS.
           home-manager.nixosModules.home-manager
+
+          # Fornece o módulo declarativo que cria o Spotify já modificado.
+          spicetify-nix.nixosModules.spicetify
 
           {
             home-manager.useGlobalPkgs = true;

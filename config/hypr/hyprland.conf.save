@@ -646,9 +646,6 @@ windowrule = match:tag games, fullscreen 0
 windowrule = match:class ^(jetbrains-*), no_initial_focus on
 windowrule = match:title ^(wind.*)$, no_initial_focus on
 
-layerrule = match:namespace wofi, blur on
-layerrule = match:namespace wofi, ignore_alpha 0
-layerrule = match:namespace wofi, animation popin 90%
 
 layerrule = match:namespace swaync-control-center, blur on
 layerrule = match:namespace swaync-control-center, ignore_alpha 0
