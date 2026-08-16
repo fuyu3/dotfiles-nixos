@@ -26,6 +26,7 @@
     hyprpolkitagent
     hyprshot
     imagemagick
+    jq
     kitty
     krita
     less
