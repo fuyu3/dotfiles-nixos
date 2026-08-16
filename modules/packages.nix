@@ -36,7 +36,6 @@
     qbittorrent
     quickshell
     smartmontools
-    systemsettings
     unzip
     virt-manager
     wallust
