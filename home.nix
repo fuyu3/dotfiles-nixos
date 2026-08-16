@@ -1,6 +1,24 @@
 { pkgs, lib, ... }:
 
-{
+let
+  flatRemixGtk = pkgs.stdenvNoCC.mkDerivation {
+    pname = "flat-remix-gtk";
+    version = "git-2026-08-16";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "daniruiz";
+      repo = "flat-remix-gtk";
+      rev = "919494f4f4ede88e2efb45cd48b98db7cc23f6ee";
+      hash = "sha256-EWe84bLG14RkCNbHp0S5FbUQ5/Ye/KbCk3gPTsGg9oQ=";
+    };
+
+    installPhase = ''
+      mkdir -p "$out/share/themes"
+      cp -r themes/Flat-Remix-GTK-Blue-Darkest-Solid "$out/share/themes/"
+      rm "$out/share/themes/Flat-Remix-GTK-Blue-Darkest-Solid"/{install,uninstall}.sh
+    '';
+  };
+in {
 
   home.username = "fuyu";
 
@@ -13,6 +31,20 @@
   programs.git.enable = true;
 
   programs.fish.enable = true;
+
+  gtk = {
+    enable = true;
+
+    theme = {
+      name = "Flat-Remix-GTK-Blue-Darkest-Solid";
+      package = flatRemixGtk;
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
 
   home.packages = with pkgs; [
 
