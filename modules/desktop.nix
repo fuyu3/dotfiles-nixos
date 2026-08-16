@@ -6,8 +6,12 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
-  programs.hyprland.enable = true;
-
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+  
   # Necessário para aceleração gráfica (OpenGL/Vulkan) no Wayland/Hyprland.
   # O módulo programs.hyprland NÃO ativa isso sozinho (checado no código-fonte
   # do nixpkgs em nixos/modules/programs/wayland/hyprland.nix) — sem essa
