@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
  
-pkill -x quickshell
+pkill quickshell
 
 sleep 0.5
  

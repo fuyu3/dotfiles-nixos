@@ -30,5 +30,16 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "intl";
+  };
+
   system.stateVersion = "26.05";
 }
