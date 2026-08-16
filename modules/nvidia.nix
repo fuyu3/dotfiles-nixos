@@ -24,6 +24,6 @@
   # Ativa o suporte a Ollama 
   services.ollama = {
     enable = true;
-    acceleration = pkgs.ollama-cuda;
+    package = pkgs.ollama-cuda;
   };
 }
