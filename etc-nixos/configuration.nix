@@ -13,6 +13,7 @@
     ./modules/users.nix
     ./modules/packages.nix
     ./modules/audio.nix
+    ./modules/fonts.nix
 
     # Driver NVIDIA ativo neste perfil. Comente esta linha em máquinas sem NVIDIA.
     ./modules/nvidia.nix
