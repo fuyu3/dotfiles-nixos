@@ -20,4 +20,10 @@
 
   # Firmware redistribuível exigido por parte do hardware NVIDIA.
   hardware.enableRedistributableFirmware = true;
+
+  # Ativa o suporte a Ollama 
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
 }

@@ -8,10 +8,11 @@
 
     ./modules/boot.nix
     ./modules/hardware.nix
-    ./modules/networking.nix
+    ./modules/connections.nix
     ./modules/desktop.nix
     ./modules/users.nix
     ./modules/packages.nix
+    ./modules/audio.nix
 
     # Driver NVIDIA ativo neste perfil. Comente esta linha em máquinas sem NVIDIA.
     ./modules/nvidia.nix
