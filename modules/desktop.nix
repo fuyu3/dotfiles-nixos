@@ -4,6 +4,7 @@
 
   # SDDM inicia a sessão gráfica; Hyprland é o compositor Wayland escolhido.
   services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
 
   programs.hyprland.enable = true;
 

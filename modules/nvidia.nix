@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   # Ativa o driver proprietário NVIDIA.
@@ -24,6 +24,6 @@
   # Ativa o suporte a Ollama 
   services.ollama = {
     enable = true;
-    acceleration = "cuda";
+    acceleration = pkgs.ollama-cuda;
   };
 }
