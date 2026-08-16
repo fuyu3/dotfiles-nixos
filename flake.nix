@@ -48,6 +48,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
 
             # home.nix mora na mesma árvore do flake agora (raiz do repo),
             # então importa por caminho relativo -- sem input de flake
