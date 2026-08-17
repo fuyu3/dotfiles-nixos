@@ -23,6 +23,7 @@ in {
     gnome-keyring
     gnome-system-monitor
     gnome-text-editor
+    grim
     goverlay
     hypridle
     hyprpicker
