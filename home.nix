@@ -35,6 +35,10 @@ in {
   gtk = {
     enable = true;
 
+    # Faz o Home Manager substituir configurações GTK pré-existentes, em vez
+    # de interromper a ativação quando encontrar arquivos locais.
+    gtk2.force = true;
+
     theme = {
       name = "Flat-Remix-GTK-Blue-Darkest-Solid";
       package = flatRemixGtk;
@@ -75,12 +79,12 @@ in {
   # Os dotfiles são aplicados somente depois que `./config` existir.
   # Isso permite avaliar a configuração mesmo antes de adicioná-los ao repositório.
   xdg.configFile = {
-    # GTK4/libadwaita (used by Nautilus) loads this stylesheet before looking
-    # up the named GTK theme. The upstream Flat Remix installer does the same.
-    "gtk-4.0/gtk.css".source =
-      "${flatRemixGtk}/share/themes/Flat-Remix-GTK-Blue-Darkest-Solid/gtk-4.0/gtk.css";
-    "gtk-4.0/assets".source =
-      "${flatRemixGtk}/share/themes/Flat-Remix-GTK-Blue-Darkest-Solid/gtk-4.0/assets";
+    # GTK3/4 são gerados pelo módulo `gtk`. `force` garante que os arquivos
+    # declarativos prevaleçam sobre configurações criadas manualmente ou por
+    # outros programas. O módulo GTK4 já importa o CSS do tema selecionado.
+    "gtk-3.0/settings.ini".force = true;
+    "gtk-4.0/settings.ini".force = true;
+    "gtk-4.0/gtk.css".force = true;
   } // lib.optionalAttrs (builtins.pathExists ./config) {
     "hypr".source = ./config/hypr;
     "kitty".source = ./config/kitty;

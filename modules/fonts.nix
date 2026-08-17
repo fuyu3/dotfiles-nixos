@@ -8,6 +8,7 @@
       noto-fonts
       nerd-fonts.jetbrains-mono
       nerd-fonts.ubuntu-mono
+      rubik 
     ];
 
     fontconfig = {
