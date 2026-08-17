@@ -44,6 +44,13 @@ in {
       package = flatRemixGtk;
     };
 
+    # A partir do stateVersion 26.05, GTK4 não herda o tema global. Declare-o
+    # explicitamente para o Home Manager gerar (e poder sobrescrever) gtk.css.
+    gtk4.theme = {
+      name = "Flat-Remix-GTK-Blue-Darkest-Solid";
+      package = flatRemixGtk;
+    };
+
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
