@@ -49,7 +49,7 @@ PanelWindow {
 
     readonly property string monthTitle: Qt.locale("pt_BR").toString(currentDateTime, "MMMM yyyy")
     readonly property string longDate: Qt.locale("pt_BR").toString(currentDateTime, "dddd, d 'de' MMMM")
-    readonly property var weekDayLabels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"]
+    readonly property var weekDayLabels: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"]
     readonly property int popupAnimDuration: 170
     readonly property int popupSlideDistance: 10
     readonly property int powerButtonWidth: 20
@@ -190,7 +190,7 @@ PanelWindow {
         var year = currentDateTime.getFullYear()
         var month = currentDateTime.getMonth()
         var firstDay = new Date(year, month, 1)
-        var firstWeekday = (firstDay.getDay() + 6) % 7
+        var firstWeekday = firstDay.getDay()
         var maxDay = new Date(year, month + 1, 0).getDate()
         var day = index - firstWeekday + 1
 
