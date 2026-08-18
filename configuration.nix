@@ -56,6 +56,14 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-
+  systemd.services.disable-acpi-wakeup = {
+    description = "Disable spurious ACPI wakeup source (Kingston NVMe on GPP0)";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/sh -c 'echo GPP0 > /proc/acpi/wakeup'";
+    };
+  };
+  
   system.stateVersion = "26.05";
 }
