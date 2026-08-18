@@ -15,6 +15,7 @@ in {
     cava
     chafa
     discord
+    e2fsprogs
     fastfetch
     gamescope
     gnome-calculator
