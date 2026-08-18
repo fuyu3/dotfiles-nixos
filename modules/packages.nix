@@ -35,6 +35,7 @@ in {
     krita
     less
     nautilus
+    networkmanagerapplet
     nwg-look
     obs-studio
     papers
