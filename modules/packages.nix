@@ -39,6 +39,7 @@ in {
     nautilus
     networkmanagerapplet
     nwg-look
+    obsidian
     obs-studio
     papers
     papirus-icon-theme
@@ -56,8 +57,6 @@ in {
     wallust
     wl-clipboard
     wl-clip-persist
-    
-    
     
     git
     wget
