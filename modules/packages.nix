@@ -48,7 +48,7 @@ in {
     quickshell
     qt6.qt5compat
     smartmontools
-    stoat
+    stoat-desktop
     unzip
     virt-manager
     vscode
