@@ -14,6 +14,7 @@ in {
     btrfs-progs
     cava
     chafa
+    cliphist
     discord
     e2fsprogs
     fastfetch
@@ -41,6 +42,7 @@ in {
     obs-studio
     papers
     papirus-icon-theme
+    parsec-bin
     pavucontrol
     peaclock
     prismlauncher
@@ -48,11 +50,14 @@ in {
     quickshell
     qt6.qt5compat
     smartmontools
-    stoat-desktop
     unzip
     virt-manager
     vscode
     wallust
+    wl-clipboard
+    wl-clip-persist
+    
+    
     
     git
     wget
