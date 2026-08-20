@@ -1,5 +1,8 @@
 hl.config({
   input = {
+    touchpad = {
+      disable_while_typing = false
+    },
     kb_layout = "us",
     kb_variant = "intl",
     kb_model = "",
