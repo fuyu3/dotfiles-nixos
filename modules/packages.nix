@@ -15,7 +15,9 @@ in {
     cava
     chafa
     cliphist
-    discord
+    (discord.override {
+      withVencord = true;
+    })
     e2fsprogs
     fastfetch
     gamescope
