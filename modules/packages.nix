@@ -35,6 +35,7 @@ in {
     hyprshot
     imagemagick
     jq
+    kdePackages.qtmultimedia
     kitty
     krita
     less
