@@ -28,7 +28,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, spicetify-nix, silentSDDM ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, spicetify-nix, silentSDDM, ... }:
   let
     system = "x86_64-linux";
   in {
