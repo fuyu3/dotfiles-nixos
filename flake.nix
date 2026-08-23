@@ -21,9 +21,14 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, spicetify-nix, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, ... }:
   let
     system = "x86_64-linux";
   in {

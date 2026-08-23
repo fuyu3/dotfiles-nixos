@@ -15,6 +15,9 @@
     ./modules/audio.nix
     ./modules/fonts.nix
 
+    # Tema do SDDM
+    inputs.silentSDDM.nixosModules.default
+
     # Driver NVIDIA ativo neste perfil. Comente esta linha em máquinas sem NVIDIA.
     ./modules/nvidia.nix
 

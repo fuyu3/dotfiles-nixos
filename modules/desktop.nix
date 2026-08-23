@@ -3,18 +3,27 @@
 {
 
   # SDDM inicia a sessão gráfica; Hyprland é o compositor Wayland escolhido.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = false;
-  
-  # Necessário para o SDDM iniciar a sessão gráfica.
-  services.xserver.enable = true;
-  
+  services.displayManager.sddm = {
+    enable = true;
+    theme = "breeze";
+    wayland.enable = false;
+  };
+
+  # Tema do SDDM
+  programs.silentSDDM = {
+    enable = true;
+    theme = "default"; 
+  };
+
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
   };
 
+  # Necessário para o SDDM iniciar a sessão gráfica.
+  services.xserver.enable = true;
+  
   # Necessário para aceleração gráfica (OpenGL/Vulkan) no Wayland/Hyprland.
   # O módulo programs.hyprland NÃO ativa isso sozinho (checado no código-fonte
   # do nixpkgs em nixos/modules/programs/wayland/hyprland.nix) — sem essa
