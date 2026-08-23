@@ -28,7 +28,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, spicetify-nix, silentSDDM, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, nixos-hardware, spicetify-nix, silentSDDM, ... }:
   let
     system = "x86_64-linux";
   in {
@@ -37,7 +37,7 @@
       nixpkgs.lib.nixosSystem {
 
         inherit system;
-        specialArgs = { inherit nixos-hardware spicetify-nix; };
+        specialArgs = { inherit inputs nixos-hardware spicetify-nix; };
 
         modules = [
 
@@ -49,6 +49,9 @@
 
           # Fornece o módulo declarativo que cria o Spotify já modificado.
           spicetify-nix.nixosModules.spicetify
+
+          # Fornece o módulo declarativo que instala o tema do SDDM.
+          silentSDDM.nixosModules.default
 
           {
             home-manager.useGlobalPkgs = true;

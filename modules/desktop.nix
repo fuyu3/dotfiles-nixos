@@ -5,7 +5,6 @@
   # SDDM inicia a sessão gráfica; Hyprland é o compositor Wayland escolhido.
   services.displayManager.sddm = {
     enable = true;
-    theme = "breeze";
     wayland.enable = false;
   };
 
