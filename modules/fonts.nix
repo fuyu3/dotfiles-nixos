@@ -3,7 +3,6 @@
 {
   fonts = {
     packages = with pkgs; [
-      twemoji-color-font
       noto-fonts-color-emoji
       noto-fonts-cjk-sans
       noto-fonts
@@ -14,7 +13,7 @@
 
     fontconfig = {
       defaultFonts = {
-        emoji = [ "Twitter Color Emoji" "Noto Color Emoji" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };
