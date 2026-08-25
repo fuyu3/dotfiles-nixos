@@ -4,6 +4,7 @@
   fonts = {
     packages = with pkgs; [
       twemoji-color-font
+      noto-fonts-color-emoji
       noto-fonts-cjk-sans
       noto-fonts
       nerd-fonts.jetbrains-mono
@@ -13,7 +14,7 @@
 
     fontconfig = {
       defaultFonts = {
-        emoji = [ "Twitter Color Emoji" ];
+        emoji = [ "Twitter Color Emoji" "Noto Color Emoji" ];
       };
     };
   };

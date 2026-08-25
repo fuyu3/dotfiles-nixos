@@ -62,7 +62,9 @@ if [ "$1" = "-d" ]; then
   shift
 fi
 
-SPOTIFY_CMD="${1:-spotify-launcher}"
+# `programs.spicetify` provides `spotify`.  `spotify-launcher` is a separate
+# package and is not installed by this configuration.
+SPOTIFY_CMD="${1:-spotify}"
 
 debug_echo() {
   if [ "$DEBUG" = true ]; then
