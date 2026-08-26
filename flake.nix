@@ -1,5 +1,5 @@
 {
-  description = "Fuyu's NixOS Configuration";
+  description = "NixOS flake";
 
   inputs = {
     # Canal principal do NixOS usado por todos os módulos.
