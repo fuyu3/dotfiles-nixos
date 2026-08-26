@@ -27,7 +27,6 @@ in {
     gnome-keyring
     gnome-system-monitor
     gnome-text-editor
-    grim
     goverlay
     hypridle
     hyprpicker
@@ -61,10 +60,15 @@ in {
     wl-clipboard
     wl-clip-persist
     
-    git
-    wget
+    cmake
     curl
-
+    gcc
+    gdb
+    git
+    gnumake
+    pkg-config
+    wget
+  
   ];
 
   # O módulo instala o Spotify já modificado; não adicione pkgs.spotify acima.
