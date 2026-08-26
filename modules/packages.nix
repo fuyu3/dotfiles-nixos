@@ -65,6 +65,7 @@ in {
     gcc
     gdb
     git
+    godot
     gnumake
     pkg-config
     wget
