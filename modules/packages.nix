@@ -28,6 +28,7 @@ in {
     gnome-system-monitor
     gnome-text-editor
     goverlay
+    grim
     hypridle
     hyprpicker
     hyprpolkitagent
