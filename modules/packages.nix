@@ -20,6 +20,7 @@ in {
     })
     e2fsprogs
     fastfetch
+    fish
     gamescope
     gnome-calculator
     gnome-characters
