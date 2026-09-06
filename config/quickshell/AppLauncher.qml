@@ -187,7 +187,7 @@ Scope {
             return Quickshell.iconPath("application-x-executable")
 
         if (iconName.indexOf("/") === 0)
-            return iconName
+            return "file://" + iconName
 
         return Quickshell.iconPath(iconName, "application-x-executable")
     }
