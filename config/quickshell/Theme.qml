@@ -2,7 +2,7 @@ import QtQuick
 
 QtObject {
     property real widgetRadius: 20
-    readonly property color neutralTextMuted: '#e7a8a8a8'
+    readonly property color neutralTextMuted: "#a8a8a8"
     readonly property color glassSubtle: "#12ffffff"
     readonly property color glassHover: "#18ffffff"
     readonly property color glassAccent: "#20ffffff"
