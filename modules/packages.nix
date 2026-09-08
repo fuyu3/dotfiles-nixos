@@ -70,6 +70,7 @@ in {
     godot
     gnumake
     pkg-config
+    python3
     wget
   
   ];
