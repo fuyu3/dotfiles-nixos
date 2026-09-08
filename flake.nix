@@ -26,9 +26,14 @@
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    m3shapes = {
+      url = "github:soramanew/m3shapes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixos-hardware, spicetify-nix, silentSDDM, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, nixos-hardware, spicetify-nix, silentSDDM, m3shapes, ... }:
   let
     system = "x86_64-linux";
   in {
