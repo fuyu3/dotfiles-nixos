@@ -14,6 +14,7 @@
     ./modules/packages.nix
     ./modules/audio.nix
     ./modules/fonts.nix
+    ./modules/m3shapes.nix
 
     # Tema do SDDM
     inputs.silentSDDM.nixosModules.default
