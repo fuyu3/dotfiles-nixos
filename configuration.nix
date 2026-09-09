@@ -14,7 +14,7 @@
     ./modules/packages.nix
     ./modules/audio.nix
     ./modules/fonts.nix
-    ./modules/qt-paths.nix
+    ./modules/qt-modules.nix
 
     # Tema do SDDM
     inputs.silentSDDM.nixosModules.default

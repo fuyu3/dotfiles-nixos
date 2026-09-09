@@ -23,6 +23,10 @@ let
       qt6.qtshadertools
     ];
 
+    # É uma lib/plugin QML, não um executável — sem isso o hook do Qt do
+    # nixpkgs recusa buildar (exige dizer explicitamente qual dos dois é).
+    dontWrapQtApps = true;
+
     cmakeFlags = [
       "-DINSTALL_QMLDIR=${pkgs.qt6.qtbase.qtQmlPrefix}"
     ];
