@@ -34,17 +34,18 @@
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nixos-hardware, spicetify-nix, silentSDDM, m3shapes, ... }:
-  let
-    system = "x86_64-linux";
-  in {
+  {
     # Única configuração do repositório; use `.#default` no nixos-rebuild.
     nixosConfigurations.default =
       nixpkgs.lib.nixosSystem {
-
-        inherit system;
         specialArgs = { inherit inputs nixos-hardware spicetify-nix; };
 
         modules = [
+          # Declara a plataforma aqui em vez de passar `system` pro
+          # nixosSystem — é o jeito atual, evita o warning de depreciação
+          # ('system' has been renamed to/replaced by
+          # 'stdenv.hostPlatform.system').
+          { nixpkgs.hostPlatform = "x86_64-linux"; }
 
           # Configuração principal do sistema e seleção dos módulos locais.
           ./configuration.nix
@@ -69,9 +70,7 @@
             # gente teve enquanto isso vivia fora de /etc/nixos.
             home-manager.users.fuyu = import ./home.nix;
           }
-
         ];
       };
-
   };
 }
