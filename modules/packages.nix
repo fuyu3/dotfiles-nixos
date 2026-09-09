@@ -69,6 +69,7 @@ in {
     git
     godot
     gnumake
+    ninja
     pkg-config
     python3
     wget
