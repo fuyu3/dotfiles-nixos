@@ -49,6 +49,7 @@ qt_add_shaders(caelestia-blobs "blob_shaders"
     BATCHABLE OPTIMIZED NOHLSL NOMSL
     GLSL "300es,330"
     PREFIX "/"
+    BASE "src"
     FILES
         src/shaders/blob.frag
         src/shaders/blob.vert
