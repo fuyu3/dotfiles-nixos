@@ -53,10 +53,11 @@ in {
     prismlauncher
     qbittorrent
     quickshell
-    qt6.qt5compat
     qt6.qtbase
     qt6.qtdeclarative
     qt6.qtshadertools
+    qt6.qttools
+    qt6.qt5compat
     smartmontools
     unzip
     virt-manager
