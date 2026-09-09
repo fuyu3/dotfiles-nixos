@@ -88,14 +88,6 @@ in {
     colorScheme = "mocha";
   };
 
-  environment.variables = {
-    QML_IMPORT_PATH = 
-      "${pkgs.qt6.qt5compat}/lib/qt-6/qml";
-
-    QML2_IMPORT_PATH =  
-      "${pkgs.qt6.qt5compat}/lib/qt-6/qml";
-  };
-
   # services.clamav.daemon.enable = true;
   # services.clamav.updater.enable = true;
 
