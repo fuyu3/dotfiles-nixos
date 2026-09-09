@@ -54,6 +54,9 @@ in {
     qbittorrent
     quickshell
     qt6.qt5compat
+    qt6.qtbase
+    qt6.qtdeclarative
+    qt6.qtshadertools
     smartmontools
     unzip
     virt-manager
