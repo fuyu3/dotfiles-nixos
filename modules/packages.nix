@@ -110,4 +110,6 @@ in {
 
   programs.firefox.enable = true;
 
+  services.gvfs.enable = true;
+
 }
