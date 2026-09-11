@@ -13,6 +13,7 @@
 
       "wheel"
       "networkmanager"
+      "docker"
 
     ];
 
