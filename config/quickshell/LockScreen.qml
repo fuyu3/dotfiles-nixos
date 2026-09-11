@@ -515,7 +515,7 @@ Scope {
             Item {
                 id: backgroundArt
                 anchors.fill: parent
-                opacity: 0.72 * lockSurface.backdropProgress
+                opacity: 1 * lockSurface.backdropProgress
                 visible: opacity > 0.01
 
                 BlobGroup {
@@ -523,6 +523,27 @@ Scope {
                     color: root.destaque
                     smoothing: 18
                 }
+
+// Moldura da tela inteira, no mesmo grupo dos blobs para fundir com eles.
+// O borderTop/Left/Right/Bottom define a espessura; o radius arredonda os
+// cantos internos; quando um blob passa perto da borda interna, o smin do
+// shader conecta os dois (é o mesmo mecanismo do toast colado na barra).
+BlobInvertedRect {
+    id: screenFrame
+
+    anchors.fill: parent
+    group: artGroup
+
+    radius: 26                 // raio dos cantos
+    borderTop: 6
+    borderLeft: 6
+    borderRight: 6
+    borderBottom: 6
+
+    // Se o seu BlobInvertedRect aceitar override de cor, use:
+    // color: root.destaque
+    // Senão, herda automaticamente do artGroup (que já é destaque).
+}
 
                 // Posições espalhadas de propósito por quadrantes diferentes
                 // da tela (não cluster num canto só) — xPct/yPct em fração
@@ -536,7 +557,12 @@ Scope {
                     { xPct: 0.16, yPct: 0.46, size: 100, dur: 11000, amp: 0.26 },
                     { xPct: 0.70, yPct: 0.90, size: 170, dur: 10200, amp: 0.20 },
                     { xPct: 0.92, yPct: 0.10, size: 120, dur: 9000,  amp: 0.28 },
-                    { xPct: 0.46, yPct: 0.05, size: 150, dur: 12500, amp: 0.24 }
+                    { xPct: 0.46, yPct: 0.05, size: 150, dur: 12500, amp: 0.24 },
+    { xPct: 0.55, yPct: 0.42, size: 140, dur: 11800, amp: 0.26 },   // centro-direita
+    { xPct: 0.22, yPct: 0.92, size: 180, dur: 13500, amp: 0.22 },   // canto inferior-esquerdo
+    { xPct: 0.80, yPct: 0.30, size: 110, dur: 8800,  amp: 0.30 },   // médio-direita
+    { xPct: 0.42, yPct: 0.60, size: 160, dur: 14200, amp: 0.20 }    // centro
+
                 ]
 
                 Repeater {
