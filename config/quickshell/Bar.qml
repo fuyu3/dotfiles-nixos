@@ -1231,7 +1231,7 @@ Timer {
                                 width: notifCol.width
                                 implicitHeight: notifCardLayout.implicitHeight + 8
                                 radius: 12
-                                color: "#20ffffff"
+                                color: theme.fundo2
                                 opacity: 1 - Math.min(0.6, Math.abs(swipeOffset) / Math.max(1, width) * 0.65)
                                 transform: Translate { x: notifCard.swipeOffset }
 
@@ -1473,7 +1473,7 @@ BlobRect {
     bottomRightRadius: 4
 
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: -2   
+    anchors.bottomMargin: -2
 
     Behavior on height {
         NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
@@ -1502,7 +1502,7 @@ BlobRect {
             Layout.fillWidth: true
             implicitHeight: 48
             radius: 14
-            color: theme.pretoSuave || "#1c1c1c"
+            color: theme.fundo2
 
             RowLayout {
                 anchors.fill: parent
@@ -1511,8 +1511,8 @@ BlobRect {
                 spacing: 12
 
                 Text {
-                    text: "⌕"
-                    color: "#a5a5a5"
+                    text: "󰍉"
+                    color: theme.branco2
                     font.family: "Rubik"
                     font.pixelSize: 17
                 }
@@ -1525,7 +1525,7 @@ BlobRect {
                         anchors.verticalCenter: parent.verticalCenter
                         visible: launcherSearchInput.text.length === 0
                         text: "Apps"
-                        color: "#888888"
+                        color: theme.branco2
                         font.family: "Rubik"
                         font.pixelSize: 15
                     }
@@ -1561,7 +1561,7 @@ BlobRect {
             Layout.fillWidth: true
             visible: AppLauncher.normalizedSearchQuery !== "" || AppLauncher.loadingApps
             text: AppLauncher.resultsSummary
-            color: "#8f8f8f"
+            color: theme.branco2
             font.family: "Rubik"
             font.pixelSize: 11
             leftPadding: 4
@@ -1586,7 +1586,7 @@ BlobRect {
                 text: AppLauncher.loadingApps
                       ? AppLauncher.resultsSummary
                       : "Nenhum aplicativo encontrado"
-                color: "#7a7a7a"
+                color: theme.branco2
                 font.family: "Rubik"
                 font.pixelSize: 14
             }
@@ -1695,7 +1695,7 @@ BlobRect {
     bottomRightRadius: 4
 
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: -2   
+    anchors.bottomMargin: -2
 
     Behavior on height {
         NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
@@ -1723,7 +1723,7 @@ BlobRect {
             Layout.fillWidth: true
             implicitHeight: 48
             radius: 14
-            color: theme.pretoSuave || "#1c1c1c"
+            color: theme.fundo2
 
             RowLayout {
                 anchors.fill: parent
@@ -1732,8 +1732,8 @@ BlobRect {
                 spacing: 12
 
                 Text {
-                    text: "⌕"
-                    color: "#a5a5a5"
+                    text: "󰍉"
+                    color: theme.branco2
                     font.family: "Rubik"
                     font.pixelSize: 17
                 }
@@ -1746,7 +1746,7 @@ BlobRect {
                         anchors.verticalCenter: parent.verticalCenter
                         visible: clipboardSearchInput.text.length === 0
                         text: "Histórico da área de transferência"
-                        color: "#888888"
+                        color: theme.branco2
                         font.family: "Rubik"
                         font.pixelSize: 15
                     }
@@ -1782,7 +1782,7 @@ BlobRect {
             Layout.fillWidth: true
             visible: ClipboardService.normalizedSearchQuery !== "" || ClipboardService.loadingEntries
             text: ClipboardService.resultsSummary
-            color: "#8f8f8f"
+            color: theme.branco2
             font.family: "Rubik"
             font.pixelSize: 11
             leftPadding: 4
@@ -1807,7 +1807,7 @@ BlobRect {
                 text: ClipboardService.loadingEntries
                       ? ClipboardService.resultsSummary
                       : "Histórico vazio"
-                color: "#7a7a7a"
+                color: theme.branco2
                 font.family: "Rubik"
                 font.pixelSize: 14
             }
@@ -1865,7 +1865,7 @@ BlobRect {
                         Text {
                             Layout.fillWidth: true
                             text: ClipboardService.subtitleFor(entry)
-                            color: "#9b9b9b"
+                            color: theme.branco2
                             font.family: "Rubik"
                             font.pixelSize: 11
                             elide: Text.ElideRight
@@ -1919,7 +1919,7 @@ BlobRect {
     bottomRightRadius: 4
 
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: -2 
+    anchors.bottomMargin: -2
 
     Behavior on height {
         NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
@@ -1946,7 +1946,7 @@ BlobRect {
             Layout.fillWidth: true
             implicitHeight: 48
             radius: 14
-            color: theme.pretoSuave || "#1c1c1c"
+            color: theme.fundo2
 
             RowLayout {
                 anchors.fill: parent
@@ -1955,8 +1955,8 @@ BlobRect {
                 spacing: 12
 
                 Text {
-                    text: "⌕"
-                    color: "#a5a5a5"
+                    text: "󰍉"
+                    color: theme.branco2
                     font.family: "Rubik"
                     font.pixelSize: 17
                 }
@@ -1969,7 +1969,7 @@ BlobRect {
                         anchors.verticalCenter: parent.verticalCenter
                         visible: wallpaperSearchInput.text.length === 0
                         text: "Wallpapers em ~/Imagens"
-                        color: "#888888"
+                        color: theme.branco2
                         font.family: "Rubik"
                         font.pixelSize: 15
                     }
@@ -2005,7 +2005,7 @@ BlobRect {
             visible: WallpaperPickerService.normalizedSearchQuery !== ""
                      || WallpaperPickerService.loadingWallpapers
             text: WallpaperPickerService.resultsSummary
-            color: "#8f8f8f"
+            color: theme.branco2
             font.family: "Rubik"
             font.pixelSize: 11
             leftPadding: 4
@@ -2029,7 +2029,7 @@ BlobRect {
                 text: WallpaperPickerService.loadingWallpapers
                       ? WallpaperPickerService.resultsSummary
                       : "Nenhum wallpaper encontrado em ~/Imagens"
-                color: "#7a7a7a"
+                color: theme.branco2
                 font.family: "Rubik"
                 font.pixelSize: 14
             }
@@ -2062,7 +2062,7 @@ BlobRect {
                         Layout.preferredWidth: 52
                         Layout.preferredHeight: 52
                         radius: 12
-                        color: "#16000000"
+                        color: theme.fundo2
                         clip: true
 
                         Image {
@@ -2093,8 +2093,8 @@ BlobRect {
                             Rectangle {
                                 visible: active
                                 radius: 999
-                                color: "#1fffffff"
-                                border.color: "#32ffffff"
+                                color: theme.fundo2
+                                border.color: theme.fundo2
                                 border.width: 1
                                 implicitWidth: activeLabel.implicitWidth + 14
                                 implicitHeight: activeLabel.implicitHeight + 6
@@ -2113,7 +2113,7 @@ BlobRect {
                         Text {
                             Layout.fillWidth: true
                             text: wallpaper.relativePath
-                            color: "#9b9b9b"
+                            color: theme.branco2
                             font.family: "Rubik"
                             font.pixelSize: 11
                             elide: Text.ElideRight
@@ -2217,7 +2217,7 @@ Connections {
                         bar.currentDateTime,
                         "dddd, d 'de' MMMM 'de' yyyy"
                     )
-                    color: "#cfcfcf"
+                    color: theme.branco
                     font.family: "Rubik"
                     font.pixelSize: 12
                     wrapMode: Text.WordWrap
@@ -2226,7 +2226,7 @@ Connections {
                 Rectangle {
                     Layout.fillWidth: true
                     height: 1
-                    color: "#18ffffff"
+                    color: theme.fundo2
                 }
 
                 Text {
@@ -2281,13 +2281,13 @@ Connections {
                                 width: 26
                                 height: 26
                                 radius: 13
-                                color: today ? "#20ffffff" : "transparent"
+                                color: today ? theme.fundo2 : "transparent"
                             }
 
                             Text {
                                 anchors.centerIn: parent
                                 text: day > 0 ? String(day) : ""
-                                color: today ? theme.branco : "#c2c2c2"
+                                color: today ? theme.branco : theme.brancoE
                                 font.family: "Rubik"
                                 font.pixelSize: 11
                                 font.bold: today
