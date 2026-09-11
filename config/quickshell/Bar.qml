@@ -11,6 +11,7 @@ import Quickshell.Services.UPower
 import QtQuick.Controls
 import Caelestia.Blobs
 import Quickshell.Services.Notifications
+import Quickshell.Widgets
 
 // Barra principal com moldura e popouts de calendário + notificações.
 // Hover: cada ícone abre seu próprio popup; a MouseArea dentro de cada
@@ -2058,20 +2059,23 @@ BlobRect {
                     anchors.rightMargin: 16
                     spacing: 14
 
-                    Rectangle {
-                        Layout.preferredWidth: 52
-                        Layout.preferredHeight: 52
-                        radius: 12
-                        color: theme.fundo2
-                        clip: true
+                    ClippingRectangle {
+    Layout.preferredWidth: 52
+    Layout.preferredHeight: 52
+    radius: 12
+    color: theme.fundo2
+    antialiasing: true
 
-                        Image {
-                            anchors.fill: parent
-                            source: wallpaper.path
-                            fillMode: Image.PreserveAspectCrop
-                            asynchronous: true
-                        }
-                    }
+    Image {
+        anchors.fill: parent
+        source: wallpaper.path
+        fillMode: Image.PreserveAspectCrop
+        asynchronous: true
+        sourceSize.width: 52
+        sourceSize.height: 52
+        cache: true
+    }
+}
 
                     ColumnLayout {
                         Layout.fillWidth: true
