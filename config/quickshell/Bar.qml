@@ -1366,7 +1366,6 @@ RowLayout {
         asynchronous: true
         fillMode: Image.PreserveAspectFit
 
-        // ícone arredondado, opcional
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Rectangle {
@@ -2230,7 +2229,7 @@ Connections {
                 Rectangle {
                     Layout.fillWidth: true
                     height: 1
-                    color: theme.fundo2
+                    color: theme.separator
                 }
 
                 Text {
@@ -2254,7 +2253,7 @@ Connections {
                             required property string modelData
                             Layout.fillWidth: true
                             text: modelData
-                            color: theme.neutralTextMuted
+                            color: theme.branco2
                             font.family: "Rubik"
                             font.pixelSize: 10
                             horizontalAlignment: Text.AlignHCenter
@@ -2291,7 +2290,7 @@ Connections {
                             Text {
                                 anchors.centerIn: parent
                                 text: day > 0 ? String(day) : ""
-                                color: today ? theme.branco : theme.brancoE
+                                color: theme.branco
                                 font.family: "Rubik"
                                 font.pixelSize: 11
                                 font.bold: today
