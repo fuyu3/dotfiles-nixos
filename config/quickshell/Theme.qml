@@ -15,14 +15,17 @@ QtObject {
     readonly property color optionFill: "#0dffffff"
 
     property color widgetBorderColor: glassSubtle
-    property int widgetBorderWidth: 1
-    readonly property color fundo: "#75161616"
-    readonly property color fundo2: "#751c1c1c"
+    property int widgetBorderWidth: 0
+    readonly property color fundo: '#6e1b4a'
+    readonly property color fundo2: '#6e1b4a'
+    readonly property color fundo3: '#a80461'
     readonly property color branco: "#ffffff"
-    readonly property color cinzaEscuro: "#555555"
+    readonly property color branco2: '#80ffffff'
+    readonly property color desativado: '#5d253a'
     readonly property color cinzaWorkspace: "#8d8d8d"
     readonly property color pretoSuave: "#b0000000"
     readonly property color erro: "#ff8585"
+    readonly property color separator: '#dc89bc'
 
     readonly property color popupShadow: "#32000000"
     readonly property color popupFill: "#d9161616"

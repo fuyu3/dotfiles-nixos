@@ -6,7 +6,6 @@ import "." as ShellComponents
 
 ShellRoot {
     id: shell
-    property bool useHorizontalBar: true
     property bool renderBar: true
     property bool autoDetectBattery: true
     property bool showBatteryIcon: true
@@ -78,54 +77,25 @@ ShellRoot {
         }
     }
 
-    LazyLoader {
-        active: shell.renderBar && shell.useHorizontalBar
-
-        BarHorizontal {
+    Bar {
             autoDetectBattery: shell.autoDetectBattery
             showBatteryIcon: shell.showBatteryIcon
-        }
-    }
-
-    LazyLoader {
-        active: shell.renderBar && !shell.useHorizontalBar
-
-        Bar {
-            autoDetectBattery: shell.autoDetectBattery
-            showBatteryIcon: shell.showBatteryIcon
-        }
     }
 
     Workspaces {
         id: workspacesWidget
     }
-    NotifToast {
-        lockActive: lockScreen.lockActive
-        topOffset: shell.notificationTopOffset
-    }
-    NotificationCenter {
-        lockActive: lockScreen.lockActive
-        topOffset: shell.notificationTopOffset
-    }
-    AppLauncher {
-        id:appLauncher
-    }
-    WallpaperPicker {
-        id: wallpaperPicker
-        wallpaperController: shell
-    }
-    ClipboardViewer {
-        id: clipboardViewer
-    }
+
     LockScreen {
         id: lockScreen
     }
 
     IpcHandler {
         target: "appLauncher"
-        function toggle(): void { appLauncher.toggle() }
+        function toggle(): void { AppLauncher.toggle() }
+        function open(): void { AppLauncher.show() }
+        function close(): void { AppLauncher.close() }
     }
-
     IpcHandler {
         target: "workspacesWidget"
         function toggle(): void { workspacesWidget.toggle() }
@@ -135,36 +105,16 @@ ShellRoot {
 
     IpcHandler {
         target: "wallpaperPicker"
-        function toggle(): void { wallpaperPicker.toggle() }
-        function open(): void { wallpaperPicker.open() }
-        function close(): void { wallpaperPicker.close() }
-    }
-
-    IpcHandler {
-        target: "wallpaper"
-        function set(path: string): void { shell.setWallpaper(path) }
-        function clear(): void { shell.clearWallpaper() }
+            function toggle(): void { WallpaperPickerService.toggle() }
+            function open():   void { WallpaperPickerService.show() }
+            function close():  void { WallpaperPickerService.close() }
     }
 
     IpcHandler {
         target: "clipboardViewer"
-        function toggle(): void { clipboardViewer.toggle() }
-        function open(): void { clipboardViewer.open() }
-        function close(): void { clipboardViewer.close() }
-    }
-
-    IpcHandler {
-        target: "notificationCenter"
-        function toggle(): void { ShellComponents.NotifServer.toggleCenter() }
-        function open(): void {
-            if (!ShellComponents.NotifServer.centerVisible)
-                ShellComponents.NotifServer.toggleCenter()
-        }
-        function close(): void {
-            if (ShellComponents.NotifServer.centerVisible)
-                ShellComponents.NotifServer.toggleCenter()
-        }
-        function unreadCount(): int { return ShellComponents.NotifServer.unreadCount }
+        function toggle(): void { ClipboardService.toggle() }
+        function open(): void { ClipboardService.open() }
+        function close(): void { ClipboardService.close() }
     }
 
     IpcHandler {
@@ -174,6 +124,7 @@ ShellRoot {
     }
 
     Component.onCompleted: {
+        WallpaperPickerService.wallpaperController = shell
         if (wallpaperPath !== "")
             requestWallpaperSync(wallpaperPath)
     }

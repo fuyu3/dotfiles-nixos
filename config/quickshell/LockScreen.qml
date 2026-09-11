@@ -7,6 +7,8 @@ import QtCore
 import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+import Caelestia.Blobs
+import M3Shapes
 
 Scope {
     id: root
@@ -503,6 +505,138 @@ Scope {
                 opacity: 0.9 * lockSurface.backdropProgress
             }
 
+            // --- Arte de fundo: campo de blobs "lava lamp" espalhado pela
+            // tela inteira + formas m3shapes variadas entre eles. Cada blob
+            // deriva verticalmente (sobe/desce em ritmos diferentes) com um
+            // pouco de wobble horizontal, e a física do BlobRect
+            // (stiffness/damping/deformScale mais soltos que o padrão) faz
+            // ele se espremer sozinho conforme se move — é isso que dá a
+            // textura gelatinosa de lava lamp, não é só translação pura.
+            Item {
+                id: backgroundArt
+                anchors.fill: parent
+                opacity: 0.72 * lockSurface.backdropProgress
+                visible: opacity > 0.01
+
+                BlobGroup {
+                    id: artGroup
+                    color: root.destaque
+                    smoothing: 18
+                }
+
+                // Posições espalhadas de propósito por quadrantes diferentes
+                // da tela (não cluster num canto só) — xPct/yPct em fração
+                // da tela, amp = quanto o blob se desloca verticalmente,
+                // dur = duração de um trecho da subida/descida.
+                readonly property var lavaBlobs: [
+                    { xPct: 0.08, yPct: 0.14, size: 210, dur: 13000, amp: 0.22 },
+                    { xPct: 0.34, yPct: 0.78, size: 150, dur: 9500,  amp: 0.30 },
+                    { xPct: 0.60, yPct: 0.22, size: 190, dur: 15000, amp: 0.18 },
+                    { xPct: 0.82, yPct: 0.62, size: 130, dur: 8200,  amp: 0.34 },
+                    { xPct: 0.16, yPct: 0.46, size: 100, dur: 11000, amp: 0.26 },
+                    { xPct: 0.70, yPct: 0.90, size: 170, dur: 10200, amp: 0.20 },
+                    { xPct: 0.92, yPct: 0.10, size: 120, dur: 9000,  amp: 0.28 },
+                    { xPct: 0.46, yPct: 0.05, size: 150, dur: 12500, amp: 0.24 }
+                ]
+
+                Repeater {
+                    model: backgroundArt.lavaBlobs
+
+                    BlobRect {
+                        id: lavaBlob
+                        required property var modelData
+                        required property int index
+
+                        group: artGroup
+                        width: modelData.size
+                        height: modelData.size
+                        topLeftRadius: width / 2
+                        topRightRadius: width / 2
+                        bottomLeftRadius: width / 2
+                        bottomRightRadius: width / 2
+
+                        // Física mais "gelatinosa" que o padrão do plugin —
+                        // deixa o squish induzido pelo movimento bem visível.
+                        stiffness: 70
+                        damping: 12
+                        deformScale: 0.0006
+
+                        property real phaseX: 0
+property real phaseY: 0
+
+x: lockSurface.width * modelData.xPct + phaseX * lockSurface.width * 0.06
+y: lockSurface.height * modelData.yPct + phaseY * lockSurface.height * modelData.amp
+
+SequentialAnimation on phaseY {
+    loops: Animation.Infinite
+    PauseAnimation { duration: lavaBlob.index * 420 }
+    NumberAnimation { to: 1;  duration: lavaBlob.modelData.dur;       easing.type: Easing.InOutSine }
+    NumberAnimation { to: -0.6; duration: lavaBlob.modelData.dur * 1.15; easing.type: Easing.InOutSine }
+}
+
+SequentialAnimation on phaseX {
+    loops: Animation.Infinite
+    NumberAnimation { to: 1;  duration: lavaBlob.modelData.dur * 1.4; easing.type: Easing.InOutSine }
+    NumberAnimation { to: -1; duration: lavaBlob.modelData.dur * 1.4; easing.type: Easing.InOutSine }
+}
+                    }
+                }
+
+                // Formas m3shapes espalhadas entre os blobs, com bem mais
+                // variedade de contorno do que só Circle/Pill.
+                readonly property var shapePool: [
+                    MaterialShape.Circle, MaterialShape.Sunny, MaterialShape.Cookie9Sided,
+                    MaterialShape.Clover4Leaf, MaterialShape.Flower, MaterialShape.Pill,
+                    MaterialShape.Heart, MaterialShape.Gem, MaterialShape.Burst,
+                    MaterialShape.PuffyDiamond, MaterialShape.Ghostish, MaterialShape.Oval
+                ]
+
+                readonly property var accentShapes: [
+                    { xPct: 0.04, yPct: 0.32, size: 58 },
+                    { xPct: 0.50, yPct: 0.86, size: 66 },
+                    { xPct: 0.88, yPct: 0.36, size: 50 },
+                    { xPct: 0.24, yPct: 0.06, size: 54 },
+                    { xPct: 0.74, yPct: 0.80, size: 62 }
+                ]
+
+                Repeater {
+                    model: backgroundArt.accentShapes
+
+                    MaterialShape {
+                        id: accentShape
+                        required property var modelData
+                        required property int index
+
+                        property int shapeCursor: index
+
+                        width: modelData.size
+                        height: modelData.size
+                        x: lockSurface.width * modelData.xPct
+                        color: index % 2 === 0 ? root.fundo2 : root.destaque
+                        opacity: 0.65
+                        shape: backgroundArt.shapePool[shapeCursor % backgroundArt.shapePool.length]
+                        animationDuration: 1200
+                        animationEasing.type: Easing.InOutQuad                       
+
+                        property real phaseY: 0
+y: lockSurface.height * modelData.yPct + phaseY * lockSurface.height * 0.10
+ 
+Timer {
+                            interval: 2200 + accentShape.index * 350
+                            running: true
+                            repeat: true
+                            onTriggered: accentShape.shapeCursor += 1
+                        }
+
+SequentialAnimation on phaseY {
+    loops: Animation.Infinite
+    NumberAnimation { to: 1;  duration: 9000 + accentShape.index * 700; easing.type: Easing.InOutSine }
+    NumberAnimation { to: -1; duration: 9000 + accentShape.index * 700; easing.type: Easing.InOutSine }
+}
+                    }
+                }
+            }
+
             Image {
                 x: root.desktopX - lockSurface.screen.x
                 y: root.desktopY - lockSurface.screen.y
@@ -514,7 +648,7 @@ Scope {
                 smooth: true
                 mipmap: true
                 fillMode: Image.Stretch
-                opacity: 0.72 * lockSurface.backdropProgress
+                opacity: 0.55 * lockSurface.backdropProgress
             }
 
             Rectangle {
@@ -527,6 +661,15 @@ Scope {
                 anchors.fill: parent
                 acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
                 onClicked: passwordInput.forceActiveFocus()
+            }
+
+            RectangularGlow {
+                anchors.fill: popup
+                glowRadius: 28
+                spread: 0.12
+                color: "#40000000"
+                cornerRadius: popupSurface.radius + 28
+                opacity: lockSurface.revealProgress
             }
 
             Item {
@@ -544,7 +687,7 @@ Scope {
                     id: popupSurface
                     anchors.fill: parent
                     color: "transparent"
-                    radius: theme.widgetRadius + 8
+                    radius: theme.widgetRadius + 16
                     border.width: theme.widgetBorderWidth
                     border.color: theme.widgetBorderColor
                     antialiasing: true
@@ -845,44 +988,81 @@ Scope {
                             Repeater {
                                 model: root.actionsModel
 
-                                delegate: Rectangle {
-                                    required property var modelData
+                                delegate: MaterialShape {
+    id: actionShape
+    required property var modelData
 
-                                    readonly property var action: modelData
-                                    property bool hovered: actionArea.containsMouse
+    readonly property var action: modelData
+    property bool hovered: actionArea.containsMouse
+    property int shapeCursor: 0
+    property real spinAngle: 0
 
-                                    width: 64
-                                    height: 64
-                                    radius: 32
-                                    color: hovered ? root.destaque : "#0dffffff"
-                                    antialiasing: true
-                                    border.width: 1
-                                    border.color: hovered ? "#34ffffff" : "#18ffffff"
+    width: 64
+    height: 64
+    color: hovered ? root.destaque : "#0dffffff"
+    shape: hovered ? backgroundArt.shapePool[shapeCursor % backgroundArt.shapePool.length]
+                   : MaterialShape.Circle
+    animationDuration: 260
+    rotation: spinAngle
 
-                                    Behavior on color {
-                                        ColorAnimation { duration: 120 }
-                                    }
+    Behavior on color {
+        ColorAnimation { duration: 140 }
+    }
 
-                                    Behavior on border.color {
-                                        ColorAnimation { duration: 120 }
-                                    }
+    // Gira enquanto hovered: +3° a cada 16ms ≈ 187°/s
+    Timer {
+        interval: 16
+        running: actionShape.hovered
+        repeat: true
+        onTriggered: actionShape.spinAngle += 3
+    }
 
-                                    Text {
-                                        anchors.centerIn: parent
-                                        text: action.icon
-                                        color: root.branco
-                                        font.family: "JetBrains Mono Nerd Font"
-                                        font.pixelSize: 24
-                                    }
+    // Volta ao estado "normal" ao sair do hover
+    NumberAnimation {
+        id: returnSpinAnim
+        target: actionShape
+        property: "spinAngle"
+        to: 0
+        duration: 420
+        easing.type: Easing.OutCubic
+    }
 
-                                    MouseArea {
-                                        id: actionArea
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        cursorShape: Qt.PointingHandCursor
-                                        onClicked: root.runAction(action)
-                                    }
-                                }
+    // Troca de forma continuamente enquanto hovered
+    Timer {
+        interval: 700
+        running: actionShape.hovered
+        repeat: true
+        onTriggered: actionShape.shapeCursor += 1
+    }
+
+    onHoveredChanged: {
+        if (hovered) {
+            returnSpinAnim.stop()
+            // começa de uma forma aleatória para os 4 botões não ficarem sincronizados
+            shapeCursor = Math.floor(Math.random() * backgroundArt.shapePool.length)
+        } else {
+            returnSpinAnim.restart()
+        }
+    }
+
+    Text {
+        anchors.centerIn: parent
+        text: actionShape.action.icon
+        color: root.branco
+        font.family: "JetBrains Mono Nerd Font"
+        font.pixelSize: 24
+        // contra-rotação: o ícone fica em pé enquanto o botão gira
+        rotation: -actionShape.spinAngle
+    }
+
+    MouseArea {
+        id: actionArea
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
+        onClicked: root.runAction(actionShape.action)
+    }
+}
                             }
                         }
                     }

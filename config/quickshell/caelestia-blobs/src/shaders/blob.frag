@@ -260,10 +260,18 @@ void main() {
     // blend zones to prevent gaps (mergedSdf < smoothFactor means in blend)
     // myIndex == -1: inverted rect renders border-owned pixels
     // myIndex >= 0: individual rect renders its owned pixels
-    if (owner != myIndex && mergedSdf > smoothFactor)
+    float blendKeep = smoothFactor * 0.35;
+    if (owner != myIndex && mergedSdf > blendKeep)
         discard;
 
-    float fw = fwidth(mergedSdf);
+    // fwidth do SDF do owner (suave em todo lugar) em vez do SDF fundido,
+    // que tem kink onde a smin circular "liga" e faz o fwidth spikar.
+    float fw;
+    if (owner >= 0 && owner < rectCount)
+        fw = fwidth(dArr[owner]);
+    else
+        fw = fwidth(mergedSdf);
+    fw = max(fw, 0.75);     // piso: evita AA exageradamente estreita em bordas quase horizontais
     float alpha = 1.0 - smoothstep(-fw, fw, mergedSdf);
-    fragColor = vec4(color.rgb * alpha, alpha) * qt_Opacity;
+        fragColor = vec4(color.rgb * alpha, alpha) * qt_Opacity;
 }
