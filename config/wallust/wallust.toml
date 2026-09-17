@@ -49,3 +49,4 @@ kitty = { template = 'kitty-colors.conf', target = '~/.config/kitty/wallust-colo
 fish = { template = 'fish-colors.fish', target = '~/.config/fish/conf.d/wallust-colors.fish' }
 btop = { template = 'btop.theme', target = '~/.config/btop/themes/wallust.theme' }
 cava = { template = 'cava.theme', target = '~/.config/cava/themes/wallust' }
+quickshell = { template = 'quickshell-colors.json', target = '~/.cache/wallust-quickshell.json' }
