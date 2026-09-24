@@ -4,6 +4,5 @@
   "surface": "{{color0}}",
   "accent": "{{color4}}",
   "accentStrong": "{{color6}}",
-  "muted": "{{color8}}",
-  "barCluster": "{{color0 | blend(color4) | lighten(0.12)}}"
+  "muted": "{{color8}}"
 }

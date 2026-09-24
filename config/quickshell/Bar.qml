@@ -400,8 +400,7 @@ Timer {
             onExited: bar.refreshBrightness()
         }
 
-        // Primeiro cluster: espaços de trabalho e estatísticas. A cor sólida
-        // evita uma faixa escura quando o Wallust produz uma paleta "dark".
+        // Primeiro cluster: espaços de trabalho e estatísticas.
         Rectangle {
             id: leftCluster
             z: 2
@@ -412,7 +411,7 @@ Timer {
             width: workspaceRow.implicitWidth + 22
             height: 30
             radius: theme.widgetRadius
-            color: theme.barCluster
+            color: theme.fundo2
             border.color: theme.widgetBorderColor
             border.width: theme.widgetBorderWidth
             y: (root.barHeight - height) / 2
@@ -535,7 +534,7 @@ Timer {
             width: centerRow.implicitWidth + 24
             height: 30
             radius: theme.widgetRadius
-            color: theme.barCluster
+            color: theme.fundo2
             border.color: theme.widgetBorderColor
             border.width: theme.widgetBorderWidth
             y: (root.barHeight - height) / 2
@@ -651,7 +650,7 @@ Timer {
             width: rightRow.implicitWidth + 22
             height: 30
             radius: theme.widgetRadius
-            color: theme.barCluster
+            color: theme.fundo2
             border.color: theme.widgetBorderColor
             border.width: theme.widgetBorderWidth
             y: (root.barHeight - height) / 2

@@ -14,8 +14,7 @@ QtObject {
         surface: "#413A3F",
         accent: "#C3145A",
         accentStrong: "#F8359C",
-        muted: "#AA668A",
-        barCluster: "#A45B7E"
+        muted: "#AA668A"
     })
     readonly property var palette: parsePalette(wallustPalette.text())
 
@@ -62,9 +61,8 @@ QtObject {
     property color widgetBorderColor: glassSubtle
     property int widgetBorderWidth: 0
     readonly property color fundo: colorFromPalette("background")
-    readonly property color fundo2: colorFromPalette("surface")
+    readonly property color fundo2: withAlpha(colorFromPalette("background"), "80")
     readonly property color fundo3: colorFromPalette("accent")
-    readonly property color barCluster: colorFromPalette("barCluster")
     readonly property color branco: colorFromPalette("foreground")
     readonly property color branco2: withAlpha(colorFromPalette("foreground"), "80")
     readonly property color desativado: colorFromPalette("muted")
