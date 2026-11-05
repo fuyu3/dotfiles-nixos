@@ -79,13 +79,13 @@ end)
 
 -- mainMod + SHIFT + LMB press → inicia pan do canvas (daemon move todas as janelas)
 hl.bind(mainMod .. " + SHIFT + mouse:272", function()
-    os.execute("python3 " .. canvasctl .. " pan-start &")
-end, { mouse = true })
+    hl.dispatch(hl.dsp.exec_cmd("python3 " .. HYPR.shell_quote(canvasctl) .. " pan-start"))
+end)
 
 -- mainMod + SHIFT + LMB release → para o pan
 hl.bind(mainMod .. " + SHIFT + mouse:272", function()
-    os.execute("python3 " .. canvasctl .. " pan-stop &")
-end, { mouse = true, release = true })
+    hl.dispatch(hl.dsp.exec_cmd("python3 " .. HYPR.shell_quote(canvasctl) .. " pan-stop"))
+end, { release = true })
 
 -- ── Binds de teclado ─────────────────────────────────────────────────────────
 
@@ -119,5 +119,4 @@ hl.bind(mainMod .. " + SHIFT + C", function()
         end
     end
 end)
-
 

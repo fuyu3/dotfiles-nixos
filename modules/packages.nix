@@ -32,7 +32,6 @@ in {
     grim
     hypridle
     hyprpicker
-    hyprpolkitagent
     hyprshot
     imagemagick
     jq
