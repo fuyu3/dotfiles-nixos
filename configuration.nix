@@ -64,8 +64,16 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/sh -c 'echo GPP0 > /proc/acpi/wakeup'";
+      # Keep the unit active after it runs so a rebuild does not start it again.
+      RemainAfterExit = true;
     };
+    script = ''
+      # /proc/acpi/wakeup is a toggle: writing GPP0 twice enables it again.
+      # Change it only when the firmware reports it as enabled.
+      if ${pkgs.gnugrep}/bin/grep -Eq '^GPP0[[:space:]].*enabled' /proc/acpi/wakeup; then
+        echo GPP0 > /proc/acpi/wakeup
+      fi
+    '';
   };
   
   system.stateVersion = "26.05";
