@@ -811,7 +811,7 @@ Timer {
 
                         Text {
                             text: bar.volPct(speakerItem.sink) + "%"
-                            color: "#bcbcbc"
+                            color: theme.branco
                             font.family: "Rubik"
                             font.pixelSize: 11
                             font.bold: true
@@ -865,7 +865,7 @@ Timer {
 
                         Text {
                             text: bar.volPct(microphoneItem.source) + "%"
-                            color: "#bcbcbc"
+                            color: theme.branco
                             font.family: "Rubik"
                             font.pixelSize: 11
                             font.bold: true
