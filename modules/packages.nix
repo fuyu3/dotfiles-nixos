@@ -15,9 +15,7 @@ in {
     cava
     chafa
     cliphist
-    (discord.override {
-      withVencord = true;
-    })
+    discord
     e2fsprogs
     fastfetch
     fish
