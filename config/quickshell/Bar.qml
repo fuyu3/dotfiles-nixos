@@ -1608,7 +1608,14 @@ BlobRect {
                             anchors.fill: parent
                             asynchronous: true
                             source: app.iconPath
+                            // Ask the icon provider for a high-resolution pixmap.  Without
+                            // sourceSize it may choose a small theme asset and Qt then scales
+                            // it to the output's physical pixel density.
+                            sourceSize.width: 96
+                            sourceSize.height: 96
                             fillMode: Image.PreserveAspectFit
+                            smooth: true
+                            mipmap: true
                         }
 
                         Text {

@@ -321,7 +321,7 @@ Item {
 
     function usageColor(usage) {
         if (usage < 0)
-            return mutedColor
+            return theme.desativado
         if (usage >= 85)
             return theme.erro
         if (usage >= 65)
@@ -333,7 +333,7 @@ Item {
 
     function tempColor(temp) {
         if (temp < 0)
-            return mutedColor
+            return theme.desativado
         if (temp >= 85)
             return theme.erro
         if (temp >= 72)
@@ -474,7 +474,7 @@ Item {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "CPU"
-                color: root.mutedColor
+                color: theme.desativado
                 font.family: "Rubik"
                 font.pixelSize: 7
                 font.bold: true
@@ -506,7 +506,7 @@ Item {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "GPU"
-                color: root.mutedColor
+                color: theme.desativado
                 font.family: "Rubik"
                 font.pixelSize: 7
                 font.bold: true
@@ -538,7 +538,7 @@ Item {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "RAM"
-                color: root.mutedColor
+                color: theme.desativado
                 font.family: "Rubik"
                 font.pixelSize: 7
                 font.bold: true
@@ -567,7 +567,7 @@ Item {
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: modelData.name
-                    color: root.mutedColor
+                    color: theme.desativado
                     font.family: "Rubik"
                     font.pixelSize: 6
                     font.bold: true
@@ -597,7 +597,7 @@ Item {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "CPU"
-                color: root.mutedColor
+                color: theme.desativado
                 font.family: "Rubik"
                 font.pixelSize: 8
                 font.bold: true
@@ -631,7 +631,7 @@ Item {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "GPU"
-                color: root.mutedColor
+                color: theme.desativado
                 font.family: "Rubik"
                 font.pixelSize: 8
                 font.bold: true
@@ -665,7 +665,7 @@ Item {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "RAM"
-                color: root.mutedColor
+                color: theme.desativado
                 font.family: "Rubik"
                 font.pixelSize: 8
                 font.bold: true
@@ -693,7 +693,7 @@ Item {
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: modelData.name
-                    color: root.mutedColor
+                    color: theme.desativado
                     font.family: "Rubik"
                     font.pixelSize: 8
                     font.bold: true
