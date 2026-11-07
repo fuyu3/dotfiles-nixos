@@ -57,7 +57,6 @@ in {
     qt6.qtshadertools
     qt6.qttools
     qt6.qt5compat
-    riseup-vpn
     smartmontools
     unzip
     virt-manager
