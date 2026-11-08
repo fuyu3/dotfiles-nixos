@@ -63,6 +63,7 @@ in {
     wl-clipboard
     wl-clip-persist
     
+    cargo
     cmake
     curl
     gcc
@@ -73,6 +74,7 @@ in {
     ninja
     pkg-config
     python3
+    rustc
     wget
   
   ];
