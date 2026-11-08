@@ -107,7 +107,7 @@ Scope {
     readonly property var actionsModel: [
         { title: "Desligar", icon: "󰐥", command: ["systemctl", "poweroff"] },
         { title: "Reiniciar", icon: "󰜉", command: ["systemctl", "reboot"] },
-        { title: "Sair da sessao", icon: "󰍃", command: ["hyprctl", "dispatch", "exit"] },
+        { title: "Sair da sessao", icon: "󰍃", command: ["hyprctl", "dispatch", "hl.dsp.exit()"] },
         { title: "Suspender", icon: "󰤄", command: ["systemctl", "suspend"] }
     ]
 
