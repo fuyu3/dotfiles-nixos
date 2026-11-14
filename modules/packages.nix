@@ -70,7 +70,6 @@ in {
     gcc
     gdb
     git
-    godot
     gnumake
     ninja
     pkg-config
