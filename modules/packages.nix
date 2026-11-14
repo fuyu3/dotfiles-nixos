@@ -1,7 +1,9 @@
 { pkgs, spicetify-nix, ... }:
 
 let
+  
   spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+
 in {
 
   # Ferramentas disponíveis globalmente para todos os usuários do sistema.
@@ -18,7 +20,6 @@ in {
     discord
     e2fsprogs
     fastfetch
-    fish
     gamescope
     gnome-calculator
     gnome-characters
@@ -112,5 +113,7 @@ in {
   services.gvfs.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
+
+  services.ollama.enable = true;
 
 }

@@ -19,11 +19,8 @@
     # Tema do SDDM
     inputs.silentSDDM.nixosModules.default
 
-    # Driver NVIDIA ativo neste perfil. Comente esta linha em máquinas sem NVIDIA.
-    ./modules/nvidia.nix
-
     # Perfil oficial do ThinkPad T495.
-    # nixos-hardware.nixosModules.lenovo-thinkpad-t495
+    nixos-hardware.nixosModules.lenovo-thinkpad-t495
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -41,8 +38,8 @@
   };
 
   services.xserver.xkb = {
-    layout = "us";
-    variant = "intl";
+    layout = "br";
+    variant = "thinkpad";
   };
   
   i18n.defaultLocale = "pt_BR.UTF-8";
@@ -57,23 +54,6 @@
     LC_PAPER = "pt_BR.UTF-8";
     LC_TELEPHONE = "pt_BR.UTF-8";
     LC_TIME = "pt_BR.UTF-8";
-  };
-
-  systemd.services.disable-acpi-wakeup = {
-    description = "Disable spurious ACPI wakeup source (Kingston NVMe on GPP0)";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      # Keep the unit active after it runs so a rebuild does not start it again.
-      RemainAfterExit = true;
-    };
-    script = ''
-      # /proc/acpi/wakeup is a toggle: writing GPP0 twice enables it again.
-      # Change it only when the firmware reports it as enabled.
-      if ${pkgs.gnugrep}/bin/grep -Eq '^GPP0[[:space:]].*enabled' /proc/acpi/wakeup; then
-        echo GPP0 > /proc/acpi/wakeup
-      fi
-    '';
   };
   
   system.stateVersion = "26.05";
