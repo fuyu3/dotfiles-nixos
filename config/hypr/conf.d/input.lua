@@ -3,8 +3,8 @@ hl.config({
     touchpad = {
       disable_while_typing = false
     },
-    kb_layout = "us",
-    kb_variant = "intl",
+    kb_layout = "br",
+    kb_variant = "thinkpad",
     kb_model = "",
     kb_options = "",
     kb_rules = "",
