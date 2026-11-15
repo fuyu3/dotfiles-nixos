@@ -38,6 +38,7 @@ in {
     kitty
     krita
     less
+    libavcodec
     nautilus
     networkmanagerapplet
     nwg-look
