@@ -20,6 +20,7 @@ in {
     discord
     e2fsprogs
     fastfetch
+    ffmpeg
     gamescope
     gnome-calculator
     gnome-characters
@@ -38,7 +39,6 @@ in {
     kitty
     krita
     less
-    libavcodec
     nautilus
     networkmanagerapplet
     nwg-look
