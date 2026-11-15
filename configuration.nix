@@ -59,6 +59,14 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = true;
+    };
+  };
+
   systemd.services.disable-acpi-wakeup = {
     description = "Disable spurious ACPI wakeup source (Kingston NVMe on GPP0)";
     wantedBy = [ "multi-user.target" ];
