@@ -4,8 +4,6 @@
 
   networking.hostName = "nixos-pc";
 
-  networking.networkmanager.enable = true;
-
   networking.networkmanager = {
     enable = true;
     dns = "systemd-resolved";
