@@ -115,4 +115,9 @@ in {
 
   services.gnome.gnome-keyring.enable = true;
 
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
 }
